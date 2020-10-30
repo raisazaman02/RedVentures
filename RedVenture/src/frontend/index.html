@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Robot Selector</title>
+</head>
+<body>
+<form>
+    <label for="robot">Choose a robot:</label>
+    <select name="robot" id="robot">
+        <option value="unipedal">Unipedal</option>
+        <option value="bipedal">Bipedal</option>
+        <option value="quadrupedal">Quadrupedal</option>
+        <option value="arachnid">Arachnid</option>
+        <option value="radial">Radial</option>
+        <option value="aeronautical">Aeronautical</option>
+    </select><br><br>
+
+    <label for="name">Enter the name of the robot:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <button onclick = "registerAccount()">Submit</button>
+</form>
+</body>
+</html>
+
+<script>
+function registerAccount()
+{
+var robotType = document.getElementById("robot").value;
+var robotName = document.getElementById("name").value;
+
+
+var registrationDetails =
+{
+robotType : robotType,
+robotName : robotName
+}
+
+$.ajax(
+{
+type:"POST",
+url: "/registration",
+data:JSON.stringify(registrationDetails),
+contentType: 'application/json',
+dataType:"json",
+success: function(data){
+alert("You are almost registered! Please check your email to verify.");
+},
+failure: function(error){
+alert("Sorry your registration did not go through!");
+},
+error: function(error){
+alert(error);
+}
+});
+
+}
+else
+</script>
